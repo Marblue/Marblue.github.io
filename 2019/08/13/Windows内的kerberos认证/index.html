@@ -415,7 +415,7 @@ height:50vh;
 <p>TOM收到了AS_T这个返回包之后，用自身的NTLM HASH来解密返回包，获得一个<strong>TOM与AS间特有的口令</strong>，简称为<strong>口令AST</strong>，和<strong>TGT</strong>，当TOM要使用网络上的服务时，TOM就发给<strong>TGS</strong>一个新的认证包，这个认证包里有两个东西，一个是<strong>TGT</strong>，另一个是<strong>由口令AST加密</strong>的包含<strong>TOM的信息</strong>与<strong>时间戳</strong>的包。</p>
 <p>TGS收到TOM发来的包，首先解密由口令AST加密的包，查看自己的网络是否有TOM请求的服务，如果有，就解密TGT，检查TGT是否过期，TOM的信息是否匹配。</p>
 <p>如果验证成功，TGS就会发送返回包<strong>TGS_T</strong>，TGS_T里面有<strong>两个东西</strong>，一个是由<strong>口令AST加密</strong>的<strong>TOM和TGT之间特有的口令</strong>（简称为<strong>口令TGST</strong>），另一个就是票据，票据是由<strong>服务密码</strong>所加密的，里面有<strong>口令TGST</strong>，<strong>用户信息</strong>，<strong>票据有效期</strong>，<strong>用户权限</strong>，<strong>时间戳</strong>。</p>
-<h3 id="Client-Server-Authentication-Exchange"><a href="#Client-Server-Authentication-Exchange" class="headerlink" title="Client/Server Authentication Exchange"></a>Client/Server Authentication Exchange</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165927.png" alt><br>TOM发送一个认证包<em>T</em>S给服务，T_S中包含着两个东西，一个是由<strong>口令TGST</strong>加密的<strong>时间戳</strong>，还有一个就是<strong>票据</strong><br>服务收到这个认证包的时候，先<strong>解密票据</strong>，<strong>查看票据是否有效</strong>，<strong>TOM是否为TOM</strong>，然后再把<strong>用户权限发给KDC</strong>，<strong>KDC再返回一个认证结果</strong>，如果TOM由权限的话，就返回一个S_T返回包给TOM，并且允许TOM使用服务。<br>该票据就会<strong>缓存</strong>在<strong>TOM的电脑内存</strong>中</p>
+<h3 id="Client-Server-Authentication-Exchange"><a href="#Client-Server-Authentication-Exchange" class="headerlink" title="Client/Server Authentication Exchange"></a>Client/Server Authentication Exchange</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165927.png" alt><br>TOM发送一个认证包T_S给服务，T_S中包含着两个东西，一个是由<strong>口令TGST</strong>加密的<strong>时间戳</strong>，还有一个就是<strong>票据</strong><br>服务收到这个认证包的时候，先<strong>解密票据</strong>，<strong>查看票据是否有效</strong>，<strong>TOM是否为TOM</strong>，然后再把<strong>用户权限发给KDC</strong>，<strong>KDC再返回一个认证结果</strong>，如果TOM有权限的话，就返回一个S_T返回包给TOM，并且允许TOM使用服务。<br>该票据就会<strong>缓存</strong>在<strong>TOM的电脑内存</strong>中</p>
 
     </article>
     <!-- license  -->
@@ -424,7 +424,7 @@ height:50vh;
             <p>原文作者：<a href="http://marblue.me">Marblue</a>
             <p>原文链接：<a href="http://marblue.me/2019/08/13/Windows内的kerberos认证/">http://marblue.me/2019/08/13/Windows内的kerberos认证/</a>
             <p>发表日期：<a href="http://marblue.me/2019/08/13/Windows内的kerberos认证/">August 13th 2019, 4:58:27 pm</a>
-            <p>更新日期：<a href="http://marblue.me/2019/08/13/Windows内的kerberos认证/">August 13th 2019, 5:06:11 pm</a>
+            <p>更新日期：<a href="http://marblue.me/2019/08/13/Windows内的kerberos认证/">August 13th 2019, 5:17:14 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -619,12 +619,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/13</span><a class="archive-post-title" href= "/2019/08/13/kerberos认证原理/" >kerberos认证原理</a>
+            <span class="archive-post-date">08/13</span><a class="archive-post-title" href= "/2019/08/13/NTLM认证/" >NTLM认证</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/13</span><a class="archive-post-title" href= "/2019/08/13/NTLM认证/" >NTLM认证</a>
+            <span class="archive-post-date">08/13</span><a class="archive-post-title" href= "/2019/08/13/kerberos认证原理/" >kerberos认证原理</a>
         </li>
     
     </div>
