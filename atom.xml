@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-08T01:40:44.012Z</updated>
+  <updated>2019-08-13T08:42:04.242Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,19 +17,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2019/08/08/hello-world/"/>
-    <id>http://yoursite.com/2019/08/08/hello-world/</id>
-    <published>2019-08-08T01:40:44.012Z</published>
-    <updated>2019-08-08T01:40:44.012Z</updated>
+    <title></title>
+    <link href="http://yoursite.com/2019/06/23/kerberos%E8%AE%A4%E8%AF%81%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2019/06/23/kerberos认证原理/</id>
+    <published>2019-06-23T06:21:54.000Z</published>
+    <updated>2019-08-13T08:42:04.242Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="kerberos认证原理"><a href="#kerberos认证原理" class="headerlink" title="kerberos认证原理"></a>kerberos认证原理</h1><h2 id="几个约定"><a href="#几个约定" class="headerlink" title="几个约定"></a>几个约定</h2><ol><li>人有密码、服务有密码</li><li>kerberos中存储着所有人和服务的密码</li><li>票据可以重用</li></ol><h2 id="大致认证流程"><a href="#大致认证流程" class="headerlink" title="大致认证流程"></a>大致认证流程</h2><h3 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20.png" alt="Step1"><br>主机发送：我要使用邮件服务器<br>kerberos回应：表明身份<br>主机发送TOM（当前使用的用户的用户名）<br>kerberos发回一个由TOM的密码加密的一个包，这个包里面有一个<strong>票据授权票</strong><br>这时候TOM在本地输入自己的密码，就可以正确解密包，获得票据授权票</p><p><strong>PS. 票据授权票特可以重复使用</strong></p><h3 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/6.53.51.png" alt="Step2"><br>TOM申请使用邮件服务，并且将票据授权票给kerberos<br>kerberos返回一个口令和一个邮件服务票据<br>TOM使用口令生成一个由口令加密而成的验证器</p><h3 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/7.07.14.png" alt="Step3"><br>TOM把邮件服务票据和验证器发给邮件服务器<br>邮件服务器首先用邮件服务密码解密票据，验证TOM身份和验证票据有效性以及获取口令<br>如果都验证成功，邮件服务器返回一个由口令加密的返回包<br>TOM收到返回包并且使用口令对返回包进行解码，验证是否真的是邮件服务器发回来的返回包，如果是真的，就使用邮件服务</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+        &lt;h1 id=&quot;kerberos认证原理&quot;&gt;&lt;a href=&quot;#kerberos认证原理&quot; class=&quot;headerlink&quot; title=&quot;kerberos认证原理&quot;&gt;&lt;/a&gt;kerberos认证原理&lt;/h1&gt;&lt;h2 id=&quot;几个约定&quot;&gt;&lt;a href=&quot;#几个约定&quot; cla
       
     
     </summary>
