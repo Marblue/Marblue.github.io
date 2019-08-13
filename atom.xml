@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://marblue.me/"/>
-  <updated>2019-08-13T08:47:15.104Z</updated>
+  <updated>2019-08-13T09:01:34.632Z</updated>
   <id>http://marblue.me/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NTLM认证</title>
+    <link href="http://marblue.me/2019/08/13/NTLM%E8%AE%A4%E8%AF%81/"/>
+    <id>http://marblue.me/2019/08/13/NTLM认证/</id>
+    <published>2019-08-13T08:58:46.000Z</published>
+    <updated>2019-08-13T09:01:34.632Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="NTLM认证"><a href="#NTLM认证" class="headerlink" title="NTLM认证"></a>NTLM认证</h1><p>前提条件：<br>工作组环境下服务器存储着每个用户的密码hash<br>域环境下域控存储着每个用户的密码hash</p><h2 id="工作组环境下"><a href="#工作组环境下" class="headerlink" title="工作组环境下"></a>工作组环境下</h2><h3 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165915.png" alt="Step1"><br>用户TOM先登陆工作站，输入自己的用户名和密码<br>工作站首先会缓存TOM的密码的hash值，然后丢弃TOM的密码</p><h3 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165916.png" alt="Step2"><br>首先，当TOM试图访问服务器资源的时候，他会向服务器发送一个请求，并且将自己的用户名发给服务器<br>服务器接收到请求的时候，会生成一个16位的<strong>随机数</strong>（Challenge)，这个随机数有两份，一份返回给客户端，一份留在本地<br>TOM会根据返回的随机数用自己密码的hash值加密随机数，返回给服务器<br>服务器将返回值验证成功后提供服务</p><h2 id="域环境下"><a href="#域环境下" class="headerlink" title="域环境下"></a>域环境下</h2><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165917.png" alt="Step3"><br>在域环境下就多了一步，因为域环境下服务器域控存储密码hash<br>当服务器收到客户端的返回值的时候，服务器就会向域控发送一个验证请求包<br>域控根据存储的密码hash值对原始challenge进行加密，验证成功性</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;NTLM认证&quot;&gt;&lt;a href=&quot;#NTLM认证&quot; class=&quot;headerlink&quot; title=&quot;NTLM认证&quot;&gt;&lt;/a&gt;NTLM认证&lt;/h1&gt;&lt;p&gt;前提条件：&lt;br&gt;工作组环境下服务器存储着每个用户的密码hash&lt;br&gt;域环境下域控存储着每个用户的密码ha
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Windows内的kerberos认证</title>
+    <link href="http://marblue.me/2019/08/13/Windows%E5%86%85%E7%9A%84kerberos%E8%AE%A4%E8%AF%81/"/>
+    <id>http://marblue.me/2019/08/13/Windows内的kerberos认证/</id>
+    <published>2019-08-13T08:58:27.000Z</published>
+    <updated>2019-08-13T09:06:11.156Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Windows内的kerberos认证"><a href="#Windows内的kerberos认证" class="headerlink" title="Windows内的kerberos认证"></a>Windows内的kerberos认证</h1><h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p>由于前置知识<code>https://marblue.me/2019/08/13/kerberos认证原理/</code>可以知道，kerberos认证有三个角色：<strong>用户</strong>、<strong>服务</strong>、<strong>kerberos</strong></p><p>在windows里面，kerberos认证主要用在域环境下，于是乎，kerberos认证三个角色就换成了：<strong>用户</strong>、<strong>服务</strong>、<strong>域控</strong></p><p>域控中负责kerberos认证是一个叫<strong>KDC（密钥分发中心）</strong>的东西，KDC又大致分为三大部分：<strong>AS（身份认证服务器）</strong>，<strong>TGS（票据发送服务器）</strong>，<strong>Account Database（账户数据库）</strong>在域的创建过程中，会自动创建一个名字叫<strong>KRBTGT</strong>账号，可以理解成为在<code>KDC</code>中的管理员，</p><p>然而kerberos认证只是解决了用户是本人而不是其他人的问题，但是没有解决用户是否有权限访问服务这个问题，为了解决这个问题，微软加入了<strong>PAC（特权属性证书）</strong>这个概念。</p><p>在PAC中包含有两个数字签名<strong>PAC_SERVER_CHECKSUM</strong>和<strong>PAC_PRIVSVR_CHECKSUM</strong>，这两个数字签名分别由<strong>Server端密码HASH</strong>和<strong>krtbtgt的 NTLM HASH</strong>加密。<strong>TGS</strong>解密之后验证签名是否正确，然后再重新构造新的PAC放在<strong>票据</strong>里返回给客户端，客户端将<strong>票据</strong>发送给服务端进行验证。<strong>服务</strong>收到<strong>票据</strong>之后解密得到PAC会将PAC的数字签名发送给<strong>KDC</strong>，<strong>KDC</strong>再进行校验然后将结果以<strong>RPC返回码</strong>的形式返回给服务。</p><h2 id="认证流程"><a href="#认证流程" class="headerlink" title="认证流程"></a>认证流程</h2><p>认证的大致流程kerberos认证的初始理念大致一样，分为三块：</p><ol><li>用户与AS的交互</li><li>用户与TGS的交互</li><li>用户和服务之间的交互</li></ol><h3 id="First-of-All"><a href="#First-of-All" class="headerlink" title="First of All"></a>First of All</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165926.png" alt><br>首先，用户输入用户名和密码到Client中，Client会对密码进行特定的处理，这个特定处理之后的值被称为<strong>NTLM HASH</strong></p><h3 id="The-Authentication-Service-Exchange"><a href="#The-Authentication-Service-Exchange" class="headerlink" title="The Authentication Service Exchange"></a>The Authentication Service Exchange</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165929.png" alt></p><p>TOM首先发送一个由TOM的NTLM HASH加密的认证包给AS，这个认证包中包含<strong>时间戳</strong>，<strong>TOM的用户名</strong>，<strong>TOM的网络地址</strong>，以及<strong>这个包的加密类型</strong></p><p>由于<strong>KDC</strong>中有一个<strong>存储着所有用户的NTLM HASH</strong>的数据库，AS如果能根据数据库中的NTLM HASH解密TOM发来的认证包，就会返回一个返回包。这个返回包里面有两个内容，一个是由<strong>TOM的NTLM HASH加密的口令</strong>，另一个是叫做<strong>TGT</strong>的东西，也就是票据授权票。这个票据授权票<strong>由krbtgt的NTLM HASH加密</strong>，里面有<strong>口令</strong>，<strong>TOM的信息</strong>，<strong>TGT的到期时间</strong>以及<strong>TOM的用户权限</strong></p><p>==注意==：这里的口令指的是TOM与AS间特有的口令</p><h3 id="The-Ticket-Granting-Service-TGS-Exchange"><a href="#The-Ticket-Granting-Service-TGS-Exchange" class="headerlink" title="The Ticket-Granting Service (TGS) Exchange"></a>The Ticket-Granting Service (TGS) Exchange</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165928.png" alt></p><p>TOM收到了AS_T这个返回包之后，用自身的NTLM HASH来解密返回包，获得一个<strong>TOM与AS间特有的口令</strong>，简称为<strong>口令AST</strong>，和<strong>TGT</strong>，当TOM要使用网络上的服务时，TOM就发给<strong>TGS</strong>一个新的认证包，这个认证包里有两个东西，一个是<strong>TGT</strong>，另一个是<strong>由口令AST加密</strong>的包含<strong>TOM的信息</strong>与<strong>时间戳</strong>的包。</p><p>TGS收到TOM发来的包，首先解密由口令AST加密的包，查看自己的网络是否有TOM请求的服务，如果有，就解密TGT，检查TGT是否过期，TOM的信息是否匹配。</p><p>如果验证成功，TGS就会发送返回包<strong>TGS_T</strong>，TGS_T里面有<strong>两个东西</strong>，一个是由<strong>口令AST加密</strong>的<strong>TOM和TGT之间特有的口令</strong>（简称为<strong>口令TGST</strong>），另一个就是票据，票据是由<strong>服务密码</strong>所加密的，里面有<strong>口令TGST</strong>，<strong>用户信息</strong>，<strong>票据有效期</strong>，<strong>用户权限</strong>，<strong>时间戳</strong>。</p><h3 id="Client-Server-Authentication-Exchange"><a href="#Client-Server-Authentication-Exchange" class="headerlink" title="Client/Server Authentication Exchange"></a>Client/Server Authentication Exchange</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165927.png" alt><br>TOM发送一个认证包<em>T</em>S给服务，T_S中包含着两个东西，一个是由<strong>口令TGST</strong>加密的<strong>时间戳</strong>，还有一个就是<strong>票据</strong><br>服务收到这个认证包的时候，先<strong>解密票据</strong>，<strong>查看票据是否有效</strong>，<strong>TOM是否为TOM</strong>，然后再把<strong>用户权限发给KDC</strong>，<strong>KDC再返回一个认证结果</strong>，如果TOM由权限的话，就返回一个S_T返回包给TOM，并且允许TOM使用服务。<br>该票据就会<strong>缓存</strong>在<strong>TOM的电脑内存</strong>中</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Windows内的kerberos认证&quot;&gt;&lt;a href=&quot;#Windows内的kerberos认证&quot; class=&quot;headerlink&quot; title=&quot;Windows内的kerberos认证&quot;&gt;&lt;/a&gt;Windows内的kerberos认证&lt;/h1&gt;&lt;h2 i
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>kerberos认证原理</title>
