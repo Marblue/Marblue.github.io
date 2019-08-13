@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://marblue.me/"/>
   <updated>2019-08-13T08:47:15.104Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://marblue.me/</id>
   
   <author>
     <name>Marblue</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>kerberos认证原理</title>
-    <link href="http://yoursite.com/2019/08/13/kerberos%E8%AE%A4%E8%AF%81%E5%8E%9F%E7%90%86/"/>
-    <id>http://yoursite.com/2019/08/13/kerberos认证原理/</id>
+    <link href="http://marblue.me/2019/08/13/kerberos%E8%AE%A4%E8%AF%81%E5%8E%9F%E7%90%86/"/>
+    <id>http://marblue.me/2019/08/13/kerberos认证原理/</id>
     <published>2019-08-13T08:46:31.000Z</published>
     <updated>2019-08-13T08:47:15.104Z</updated>
     
