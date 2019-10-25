@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://marblue.me/"/>
-  <updated>2019-08-13T09:01:34.632Z</updated>
+  <updated>2019-10-25T06:33:07.465Z</updated>
   <id>http://marblue.me/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java反射学习</title>
+    <link href="http://marblue.me/2019/10/25/java%E5%8F%8D%E5%B0%84%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://marblue.me/2019/10/25/java反射学习/</id>
+    <published>2019-10-25T06:32:00.000Z</published>
+    <updated>2019-10-25T06:33:07.465Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="java反射学习"><a href="#java反射学习" class="headerlink" title="java反射学习"></a>java反射学习</h1><h2 id="什么是-正-射"><a href="#什么是-正-射" class="headerlink" title="什么是[正]射"></a>什么是[正]射</h2><p>既然有反射，那么就有[正]射</p><p>一般情况下，我们要使用一个类，我们必须知道这个类它的作用，我们才实例化这个类<br><img src="https://raw.githubusercontent.com/Marblue/pic/master/20191025142610.png" alt="正射"><br>上图就是一个典型的[正]射</p><p>反射则是一开始并不知道我要初始化的类对象是什么，自然也无法使用 new 关键字来创建对象了。</p><h2 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a>什么是反射</h2><p>反射 (Reflection) 是 Java 的特征之一，它允许运行中的 Java 程序获取自身的信息，并且可以操作类或对象的内部属性。</p><p>通过反射，我们可以在运行时获得程序或程序集中每一个类型的成员和成员的信息。程序中一般的对象的类型都是在编译期就确定下来的，而 Java 反射机制可以动态地创建对象并调用其属性，这样的对象的类型在编译期是未知的。所以我们可以通过反射机制直接创建对象，即使这个对象的类型在编译期是未知的。</p><p>反射的核心是 JVM 在运行时才动态加载类或调用方法/访问属性，它不需要事先（写代码的时候或编译期）知道运行对象是谁。</p><p>Java 反射主要提供以下功能：</p><ol><li>在运行时判断任意一个对象所属的类；</li><li>在运行时构造任意一个类的对象；</li><li>在运行时判断任意一个类所具有的成员变量和方法（通过反射甚至可以调用private方法）；</li><li>在运行时调用任意一个对象的方法</li></ol><p>重点：是运行时而不是编译时</p><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20191025142611.png" alt="反射"><br>首先，获取类的对象实例</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class clz = Class.forName(<span class="string">"test.Person"</span>);</span><br></pre></td></tr></table></figure><p>然后在获取类的构造方法对象</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Constructor personConstructor = clz.getConstructor();</span><br></pre></td></tr></table></figure><p>通过构造方法对象来获取反射对象</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object personObj = personConstructor.newInstance();</span><br></pre></td></tr></table></figure><p>如果要调用反射对象的方法的话<br>首先获取方法对象</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Method setNameMethod = clz.getMethod(<span class="string">"setName"</span>,  String.class);</span><br><span class="line">Method getNameMethod = clz.getMethod(<span class="string">"getName"</span>);</span><br></pre></td></tr></table></figure><p>通过invoke来调用方法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setNameMethod.invoke(personObj,<span class="string">"Ming"</span>);</span><br><span class="line">getNameMethod.invoke(personObj);</span><br></pre></td></tr></table></figure><p>这种就有点类似c++里面的显式调用dll和隐式调用dll了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;java反射学习&quot;&gt;&lt;a href=&quot;#java反射学习&quot; class=&quot;headerlink&quot; title=&quot;java反射学习&quot;&gt;&lt;/a&gt;java反射学习&lt;/h1&gt;&lt;h2 id=&quot;什么是-正-射&quot;&gt;&lt;a href=&quot;#什么是-正-射&quot; class=&quot;header
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>NTLM认证</title>

@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Windows内的kerberos认证 · Marblue&#39;s World</title>
+    <title>Marblue&#39;s World</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >Marblue&#39;s World</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">Windows内的kerberos认证</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>Marblue's World</a>
 </header>
@@ -231,68 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/1920x1080)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            Windows内的kerberos认证
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1k</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/08/13</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -393,74 +338,33 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h1 id="Windows内的kerberos认证"><a href="#Windows内的kerberos认证" class="headerlink" title="Windows内的kerberos认证"></a>Windows内的kerberos认证</h1><h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p>由于前置知识<code>https://marblue.me/2019/08/13/kerberos认证原理/</code>可以知道，kerberos认证有三个角色：<strong>用户</strong>、<strong>服务</strong>、<strong>kerberos</strong></p>
-<p>在windows里面，kerberos认证主要用在域环境下，于是乎，kerberos认证三个角色就换成了：<strong>用户</strong>、<strong>服务</strong>、<strong>域控</strong></p>
-<p>域控中负责kerberos认证是一个叫<strong>KDC（密钥分发中心）</strong>的东西，KDC又大致分为三大部分：<strong>AS（身份认证服务器）</strong>，<strong>TGS（票据发送服务器）</strong>，<strong>Account Database（账户数据库）</strong>在域的创建过程中，会自动创建一个名字叫<strong>KRBTGT</strong>账号，可以理解成为在<code>KDC</code>中的管理员，</p>
-<p>然而kerberos认证只是解决了用户是本人而不是其他人的问题，但是没有解决用户是否有权限访问服务这个问题，为了解决这个问题，微软加入了<strong>PAC（特权属性证书）</strong>这个概念。</p>
-<p>在PAC中包含有两个数字签名<strong>PAC_SERVER_CHECKSUM</strong>和<strong>PAC_PRIVSVR_CHECKSUM</strong>，这两个数字签名分别由<strong>Server端密码HASH</strong>和<strong>krtbtgt的 NTLM HASH</strong>加密。<strong>TGS</strong>解密之后验证签名是否正确，然后再重新构造新的PAC放在<strong>票据</strong>里返回给客户端，客户端将<strong>票据</strong>发送给服务端进行验证。<strong>服务</strong>收到<strong>票据</strong>之后解密得到PAC会将PAC的数字签名发送给<strong>KDC</strong>，<strong>KDC</strong>再进行校验然后将结果以<strong>RPC返回码</strong>的形式返回给服务。</p>
-<h2 id="认证流程"><a href="#认证流程" class="headerlink" title="认证流程"></a>认证流程</h2><p>认证的大致流程kerberos认证的初始理念大致一样，分为三块：</p>
-<ol>
-<li>用户与AS的交互</li>
-<li>用户与TGS的交互</li>
-<li>用户和服务之间的交互</li>
-</ol>
-<h3 id="First-of-All"><a href="#First-of-All" class="headerlink" title="First of All"></a>First of All</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165926.png" alt><br>首先，用户输入用户名和密码到Client中，Client会对密码进行特定的处理，这个特定处理之后的值被称为<strong>NTLM HASH</strong></p>
-<h3 id="The-Authentication-Service-Exchange"><a href="#The-Authentication-Service-Exchange" class="headerlink" title="The Authentication Service Exchange"></a>The Authentication Service Exchange</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165929.png" alt></p>
-<p>TOM首先发送一个由TOM的NTLM HASH加密的认证包给AS，这个认证包中包含<strong>时间戳</strong>，<strong>TOM的用户名</strong>，<strong>TOM的网络地址</strong>，以及<strong>这个包的加密类型</strong></p>
-<p>由于<strong>KDC</strong>中有一个<strong>存储着所有用户的NTLM HASH</strong>的数据库，AS如果能根据数据库中的NTLM HASH解密TOM发来的认证包，就会返回一个返回包。这个返回包里面有两个内容，一个是由<strong>TOM的NTLM HASH加密的口令</strong>，另一个是叫做<strong>TGT</strong>的东西，也就是票据授权票。这个票据授权票<strong>由krbtgt的NTLM HASH加密</strong>，里面有<strong>口令</strong>，<strong>TOM的信息</strong>，<strong>TGT的到期时间</strong>以及<strong>TOM的用户权限</strong></p>
-<p>==注意==：这里的口令指的是TOM与AS间特有的口令</p>
-<h3 id="The-Ticket-Granting-Service-TGS-Exchange"><a href="#The-Ticket-Granting-Service-TGS-Exchange" class="headerlink" title="The Ticket-Granting Service (TGS) Exchange"></a>The Ticket-Granting Service (TGS) Exchange</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165928.png" alt></p>
-<p>TOM收到了AS_T这个返回包之后，用自身的NTLM HASH来解密返回包，获得一个<strong>TOM与AS间特有的口令</strong>，简称为<strong>口令AST</strong>，和<strong>TGT</strong>，当TOM要使用网络上的服务时，TOM就发给<strong>TGS</strong>一个新的认证包，这个认证包里有两个东西，一个是<strong>TGT</strong>，另一个是<strong>由口令AST加密</strong>的包含<strong>TOM的信息</strong>与<strong>时间戳</strong>的包。</p>
-<p>TGS收到TOM发来的包，首先解密由口令AST加密的包，查看自己的网络是否有TOM请求的服务，如果有，就解密TGT，检查TGT是否过期，TOM的信息是否匹配。</p>
-<p>如果验证成功，TGS就会发送返回包<strong>TGS_T</strong>，TGS_T里面有<strong>两个东西</strong>，一个是由<strong>口令AST加密</strong>的<strong>TOM和TGT之间特有的口令</strong>（简称为<strong>口令TGST</strong>），另一个就是票据，票据是由<strong>服务密码</strong>所加密的，里面有<strong>口令TGST</strong>，<strong>用户信息</strong>，<strong>票据有效期</strong>，<strong>用户权限</strong>，<strong>时间戳</strong>。</p>
-<h3 id="Client-Server-Authentication-Exchange"><a href="#Client-Server-Authentication-Exchange" class="headerlink" title="Client/Server Authentication Exchange"></a>Client/Server Authentication Exchange</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165927.png" alt><br>TOM发送一个认证包T_S给服务，T_S中包含着两个东西，一个是由<strong>口令TGST</strong>加密的<strong>时间戳</strong>，还有一个就是<strong>票据</strong><br>服务收到这个认证包的时候，先<strong>解密票据</strong>，<strong>查看票据是否有效</strong>，<strong>TOM是否为TOM</strong>，然后再把<strong>用户权限发给KDC</strong>，<strong>KDC再返回一个认证结果</strong>，如果TOM有权限的话，就返回一个S_T返回包给TOM，并且允许TOM使用服务。<br>该票据就会<strong>缓存</strong>在<strong>TOM的电脑内存</strong>中</p>
-
-    </article>
-    <!-- license  -->
+            <main class="main index-page">
     
-        <div class="license-wrapper">
-            <p>原文作者：<a href="http://marblue.me">Marblue</a>
-            <p>原文链接：<a href="http://marblue.me/2019/08/13/Windows内的kerberos认证/">http://marblue.me/2019/08/13/Windows内的kerberos认证/</a>
-            <p>发表日期：<a href="http://marblue.me/2019/08/13/Windows内的kerberos认证/">August 13th 2019, 4:58:27 pm</a>
-            <p>更新日期：<a href="http://marblue.me/2019/08/13/Windows内的kerberos认证/">August 13th 2019, 5:17:14 pm</a>
-            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/25/java反射学习/" >
+            
+                <span>java反射学习</span>
+        </a>
+        <div class="abstract-content">
+            
         </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/25</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/08/13/NTLM认证/" title= "NTLM认证">
-                    <div class="nextTitle">NTLM认证</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/08/13/kerberos认证原理/" title= "kerberos认证原理">
-                    <div class="prevTitle">kerberos认证原理</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -540,24 +444,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows内的kerberos认证"><span class="toc-number">1.</span> <span class="toc-text">Windows内的kerberos认证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前置知识"><span class="toc-number">1.1.</span> <span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#认证流程"><span class="toc-number">1.2.</span> <span class="toc-text">认证流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#First-of-All"><span class="toc-number">1.2.1.</span> <span class="toc-text">First of All</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Authentication-Service-Exchange"><span class="toc-number">1.2.2.</span> <span class="toc-text">The Authentication Service Exchange</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Ticket-Granting-Service-TGS-Exchange"><span class="toc-number">1.2.3.</span> <span class="toc-text">The Ticket-Granting Service (TGS) Exchange</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Client-Server-Authentication-Exchange"><span class="toc-number">1.2.4.</span> <span class="toc-text">Client/Server Authentication Exchange</span></a></li></ol></li></ol></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -713,8 +599,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
