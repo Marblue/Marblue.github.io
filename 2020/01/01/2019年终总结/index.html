@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>NTLM认证 · Marblue&#39;s World</title>
+    <title>2019年终总结 · Marblue&#39;s World</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Marblue&#39;s World</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">NTLM认证</a>
+                <a href="#" class="post-name">2019年终总结</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            NTLM认证
+            2019年终总结
             <!-- 404 -->
             
         </h1>
@@ -266,12 +266,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">309</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/08/13</span>
+                    <span class="post-intro-time">2020/01/01</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,19 +395,73 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="NTLM认证"><a href="#NTLM认证" class="headerlink" title="NTLM认证"></a>NTLM认证</h1><p>前提条件：<br>工作组环境下服务器存储着每个用户的密码hash<br>域环境下域控存储着每个用户的密码hash</p>
-<h2 id="工作组环境下"><a href="#工作组环境下" class="headerlink" title="工作组环境下"></a>工作组环境下</h2><h3 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165915.png" alt="Step1"><br>用户TOM先登陆工作站，输入自己的用户名和密码<br>工作站首先会缓存TOM的密码的hash值，然后丢弃TOM的密码</p>
-<h3 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165916.png" alt="Step2"><br>首先，当TOM试图访问服务器资源的时候，他会向服务器发送一个请求，并且将自己的用户名发给服务器<br>服务器接收到请求的时候，会生成一个16位的<strong>随机数</strong>（Challenge)，这个随机数有两份，一份返回给客户端，一份留在本地<br>TOM会根据返回的随机数用自己密码的hash值加密随机数，返回给服务器<br>服务器将返回值验证成功后提供服务</p>
-<h2 id="域环境下"><a href="#域环境下" class="headerlink" title="域环境下"></a>域环境下</h2><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20190813165917.png" alt="Step3"><br>在域环境下就多了一步，因为域环境下服务器域控存储密码hash<br>当服务器收到客户端的返回值的时候，服务器就会向域控发送一个验证请求包<br>域控根据存储的密码hash值对原始challenge进行加密，验证成功性</p>
+        <h1 id="年终总结"><a href="#年终总结" class="headerlink" title="年终总结"></a>年终总结</h1><p>互联网是有记忆的，记录下2019年自己干过的大大小小的蠢事</p>
+<p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20200101010647.jpeg" alt></p>
+<h2 id="关于2019"><a href="#关于2019" class="headerlink" title="关于2019"></a>关于2019</h2><p>在洗澡的时候仔细的思考了2019年的我到底在干嘛。想来想去也不知道该从哪里说起，就用几首我特别喜欢的音乐来表达下吧</p>
+<h3 id="80后时代曲-by-C-allstar"><a href="#80后时代曲-by-C-allstar" class="headerlink" title="80后时代曲(by C allstar)"></a>80后时代曲(by C allstar)</h3><blockquote>
+<p>一飞冲天去，一飞冲天去，无奈送走穿梭机</p>
+</blockquote>
+<p>  “2019年对我来说真的是个特别有意思的年份，寒假的时候帮学校老师做项目，一月份的成都，个位数的温度，彻底的把我这个广东人冻成了狗。但是，当项目暂时告一段落，发钱的时候。那些在一月份所受到的苦难全部消散成过眼云烟，那时候我在想“或许这就是为什么那么多人期待着发工资这一天的原因吧”</p>
+<p>  拿着做项目发的一点点钱，过了一个普通的不能再普通的寒假，心想着“我这也算是有点小小的成功了吧”。但是随之而来的却是一个无比残酷的单选题<strong>考研还是就业</strong></p>
+<p>  其实我很早的就意识到这个单选题的存在了，也和父母有过多次的讨论，但是我却一次次的选择了逃避，看着周围的同学不是开始各种考研复习，就是去各大互联网公司实习。下意识的也开始焦虑起来了</p>
+<p>  <img src="https://raw.githubusercontent.com/Marblue/pic/master/20200101005851.jpeg" alt="感触挺深的"></p>
+<p>  就像是大家在大学这个新手村花了三年时间，练成了各种绝世武功，配上了绝世神兵，准备闯荡江湖了。而我，花了三年时间，只是学了太祖长拳，却也幻想着和他们一起闯荡江湖</p>
+<p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20200101010116.jpg" alt="确实"></p>
+<p>  结果也就那样了，都还没出拳，就被现实击倒在地上，面试的几家公司不是石沉大海就是“简历已经进入人才库”</p>
+<p>  回过神来，身边的人已经“考研第x轮复习”，“提前获得转正offer”。而我，也不得不去做出属于我的选择了</p>
+<p>  可能是老天真的看不下去我这个只是学了太祖长拳出来闯荡江湖的人吧，在暑假获得了长亭科技的实习offer。我至今都忘不了收到offer那一天，当hr小姐姐把offer letter发到我的邮箱的时候，我还在清理邮箱，差点就把offer letter删掉了。。幸好手慢没删掉。或许这真的就是上天眷顾吧，能在长亭科技实习，这个是我从来没有想过的，我投简历的时候还在想，大概这又是“简历进入人才库”+1吧。不过也是感谢长亭的师傅们给我机会让我在这里实习。</p>
+<p>Thanks</p>
+<h3 id="Change-by-Monkey-Majik"><a href="#Change-by-Monkey-Majik" class="headerlink" title="Change(by Monkey Majik)"></a>Change(by Monkey Majik)</h3><blockquote>
+<p>I need a change ‘cause it’s all gone wrong for me</p>
+</blockquote>
+<p>  或许真的真的要到改变的时候了吧，从16年进入到学校以来，年年都是一个样子，间歇性踌躇满志，持续性混吃等死<br>  <img src="https://raw.githubusercontent.com/Marblue/pic/master/20200101010114.jpg" alt="确实"></p>
+<p>  然而19年，生活终于对我动手了，逼迫着我去做出选择，做出改变。</p>
+<p>  体重是增加了，脑袋里的知识好像不随着体重的增加而增加；<br>  <img src="https://raw.githubusercontent.com/Marblue/pic/master/20200101010119.jpg" alt="关于减肥"></p>
+<p>  头发也开始逐渐逐渐的减少了，但是焦虑却也没随着头发的掉落也一并掉落，反而像掉落在地的头发一样越积越多。。</p>
+<p>  去年的Flag至今没实现完，学习计划也从“2018年学习计划”改成了“2019年学习计划”</p>
+<p>  或许真的是要做出一点改变了</p>
+<p>  <img src="https://raw.githubusercontent.com/Marblue/pic/master/20200101010115.jpg" alt="有一说一"></p>
+<h2 id="关于工作"><a href="#关于工作" class="headerlink" title="关于工作"></a>关于工作</h2><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20200101005852.jpg" alt="工作"></p>
+<p>在寒假做项目的时候，我原以为工作的强度大多都是这样的，应该没有比这更累的了吧。结果这和实习工作比起来，简直是小巫见大巫。实习期间也算是大大小小的项目都做过了，也都记录一下吧</p>
+<h3 id="“doc工程师”"><a href="#“doc工程师”" class="headerlink" title="“doc工程师”"></a>“doc工程师”</h3><p>说实话，我感觉比挖洞更麻烦的事情就是写报告了。文档工程师提醒您“报告不规范，支付宝两行泪”</p>
+<h3 id="“守夜冠军”"><a href="#“守夜冠军”" class="headerlink" title="“守夜冠军”"></a>“守夜冠军”</h3><p>高强度盯着监控日志，生怕出现严重的告警，提心吊胆整个晚上。身体与心理的双重打击</p>
+<h3 id="“无情的挖洞机器”-“带恶人”-“今晚你加班”"><a href="#“无情的挖洞机器”-“带恶人”-“今晚你加班”" class="headerlink" title="“无情的挖洞机器”|“带恶人”|“今晚你加班”"></a>“无情的挖洞机器”|“带恶人”|“今晚你加班”</h3><p>不说了，懂得都懂，说出来都是泪。做完这个项目我就发誓，谁再逼我做这个项目我就去提流程</p>
+<h2 id="关于游戏"><a href="#关于游戏" class="headerlink" title="关于游戏"></a>关于游戏</h2><p>无论多苦多累，只要玩上几款好游戏，人生就感觉好起来了。但是毕竟实习了，能玩游戏时间也没有在学校那么多了。但是还是抽空玩了几款游戏</p>
+<h3 id="蔚蓝"><a href="#蔚蓝" class="headerlink" title="蔚蓝"></a>蔚蓝</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20200101011229.jpg" alt="真的太好玩啦"><br>一款痛并快乐着的小游戏(确信)，主要讲述的是一个少女为了寻求自我去爬山，在爬山旅途中遇到的各种各样的人和物的故事。</p>
+<p>这款游戏的代入感很强，你常常会感觉到不是少女在爬山，而是你在爬山，你在经历着这一切。</p>
+<p>游戏好玩，操作感强，故事讲述的好，音乐又好听(重点)。强烈建议大家都去玩一玩</p>
+<p>真的是一款特别不错的游戏，可惜受限于我的文笔，无法完整的表现出这个游戏到底有多好，真的强烈推荐大家都去玩一下</p>
+<h3 id="火焰纹章-风花雪月"><a href="#火焰纹章-风花雪月" class="headerlink" title="火焰纹章-风花雪月"></a>火焰纹章-风花雪月</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20200101011230.jpg" alt="风花雪月"><br>一款战棋类游戏，主要讲述的是老师与学生、学生与学生之间的事(这个是真的)</p>
+<p>这个游戏真正吸引我的地方是它对人物的刻画，当在一个学校一起学习的同学们，为了追寻各自的目标而走上不同的道路，昔日的同学可能会变成今时的同伴，也可能变成阻拦你前进的人，这时候的你，该如何抉择。</p>
+<h3 id="命运2"><a href="#命运2" class="headerlink" title="命运2"></a>命运2</h3><p><img src="https://raw.githubusercontent.com/Marblue/pic/master/20200101011436.png" alt="幽梦之城"><br>人啊，总不能呆在自己的一亩三分地里过活，总得进行社交活动，我觉得命运2其实就是一个不错的服务性游戏</p>
+<p>也是这款游戏，让我认识到了不少朋友，也找到了一起玩的组织，或许这款游戏带来的不仅仅是游戏本身所呈现的内容，更多的是增进人与人之间的距离吧。大概</p>
+<h2 id="关于2020"><a href="#关于2020" class="headerlink" title="关于2020"></a>关于2020</h2><p>全面小康难道还要我再度重申吗？</p>
+<h2 id="关于Flag"><a href="#关于Flag" class="headerlink" title="关于Flag"></a>关于Flag</h2><p>还是要立点Flag的，万一实现了呢</p>
+<ul>
+<li><input disabled type="checkbox"> SRC排名</li>
+<li><input disabled type="checkbox"> 更多的挖洞技巧</li>
+<li><input disabled type="checkbox"> 完善自制的工具库</li>
+<li><input disabled type="checkbox"> 挖一个高质量的CVE</li>
+</ul>
+<p>最后的最后</p>
+<ul>
+<li><input disabled type="checkbox"> 找富婆(速度安排我，我不想努力了)</li>
+<li><input disabled type="checkbox"> 脱单(求求了，全面小康建成之日真不想再一个人跨年了)</li>
+</ul>
+<hr>
+<p>引用一段我今天看到的话来结束吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">这一年里，你一共提交了100个漏洞报告</span><br><span class="line">你熱衷于使用AWVs和御剑。</span><br><span class="line">喜欢和沙雕网友一起讨论你们两个都不懂的技术知识。</span><br><span class="line"></span><br><span class="line">每天早上你都会打开资讯站点假装了解最新漏洞。</span><br><span class="line">2019年，你说的最多的几句话是</span><br><span class="line">这个漏洞怎么会复现不成功呢</span><br><span class="line">在我测试时是好的啊</span><br><span class="line">你清下缓存试试</span><br><span class="line"></span><br><span class="line">4.23大概是很特别的一天</span><br><span class="line">这一天里</span><br><span class="line">你提交了二十个漏洞</span><br><span class="line">重复了六个</span><br><span class="line">内部已知有十二个</span><br><span class="line">通过了两个低危</span><br><span class="line">十块钱</span><br><span class="line"></span><br><span class="line">8.17</span><br><span class="line">这一天你睡得很晚</span><br><span class="line">凌晨2:34才挖到一个低危</span><br><span class="line">然后在朋友圈里发了一句装逼的话</span><br><span class="line">挖洞好累</span><br><span class="line">那一刻你好像感觉自己也成为了一个大佬</span><br><span class="line"></span><br><span class="line">2019年一年的时间里</span><br><span class="line">你使用了5瓶霸王洗发露</span><br><span class="line">发际线上升了4厘米</span><br></pre></td></tr></table></figure>
+
+<p>2020年一起加油吧各位</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://marblue.me">Marblue</a>
-            <p>原文链接：<a href="http://marblue.me/2019/08/13/NTLM认证/">http://marblue.me/2019/08/13/NTLM认证/</a>
-            <p>发表日期：<a href="http://marblue.me/2019/08/13/NTLM认证/">August 13th 2019, 4:58:46 pm</a>
-            <p>更新日期：<a href="http://marblue.me/2019/08/13/NTLM认证/">August 13th 2019, 5:01:34 pm</a>
+            <p>原文链接：<a href="http://marblue.me/2020/01/01/2019年终总结/">http://marblue.me/2020/01/01/2019年终总结/</a>
+            <p>发表日期：<a href="http://marblue.me/2020/01/01/2019年终总结/">January 1st 2020, 1:17:17 am</a>
+            <p>更新日期：<a href="http://marblue.me/2020/01/01/2019年终总结/">January 1st 2020, 1:19:20 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -415,17 +469,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2019/10/25/java反射学习/" title= "java反射学习">
-                    <div class="nextTitle">java反射学习</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2019/08/13/Windows内的kerberos认证/" title= "Windows内的kerberos认证">
-                    <div class="prevTitle">Windows内的kerberos认证</div>
+                <a href= "/2019/10/25/java反射学习/" title= "java反射学习">
+                    <div class="prevTitle">java反射学习</div>
                 </a>
             
         </li>
@@ -539,7 +588,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NTLM认证"><span class="toc-number">1.</span> <span class="toc-text">NTLM认证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#工作组环境下"><span class="toc-number">1.1.</span> <span class="toc-text">工作组环境下</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step1"><span class="toc-number">1.1.1.</span> <span class="toc-text">Step1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step2"><span class="toc-number">1.1.2.</span> <span class="toc-text">Step2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#域环境下"><span class="toc-number">1.2.</span> <span class="toc-text">域环境下</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#年终总结"><span class="toc-number">1.</span> <span class="toc-text">年终总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于2019"><span class="toc-number">1.1.</span> <span class="toc-text">关于2019</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#80后时代曲-by-C-allstar"><span class="toc-number">1.1.1.</span> <span class="toc-text">80后时代曲(by C allstar)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Change-by-Monkey-Majik"><span class="toc-number">1.1.2.</span> <span class="toc-text">Change(by Monkey Majik)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于工作"><span class="toc-number">1.2.</span> <span class="toc-text">关于工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#“doc工程师”"><span class="toc-number">1.2.1.</span> <span class="toc-text">“doc工程师”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“守夜冠军”"><span class="toc-number">1.2.2.</span> <span class="toc-text">“守夜冠军”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#“无情的挖洞机器”-“带恶人”-“今晚你加班”"><span class="toc-number">1.2.3.</span> <span class="toc-text">“无情的挖洞机器”|“带恶人”|“今晚你加班”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于游戏"><span class="toc-number">1.3.</span> <span class="toc-text">关于游戏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#蔚蓝"><span class="toc-number">1.3.1.</span> <span class="toc-text">蔚蓝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#火焰纹章-风花雪月"><span class="toc-number">1.3.2.</span> <span class="toc-text">火焰纹章-风花雪月</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命运2"><span class="toc-number">1.3.3.</span> <span class="toc-text">命运2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于2020"><span class="toc-number">1.4.</span> <span class="toc-text">关于2020</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于Flag"><span class="toc-number">1.5.</span> <span class="toc-text">关于Flag</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
